@@ -12,8 +12,9 @@ public class Interface extends JFrame implements ActionListener {
 	private JTextField j2;
 	private JPanel panelTitre, panelMilieu, panelAnnul;
 	private JLabel l,l2,l3;
-	private JButton b1, b2;
-	public static Connection c;
+	private JButton b1, b2, b3;
+	public static Connection c, d;
+	private DataSource j;
 	private String champ1,champ2;
 	
 	
@@ -31,6 +32,7 @@ public class Interface extends JFrame implements ActionListener {
 		
 		b1 = new JButton("Connecion");
 		b2 = new JButton("Cancel the entry");
+		b3 = new JButton ("Simulate Connection");
 		
 		
 		
@@ -50,6 +52,7 @@ public class Interface extends JFrame implements ActionListener {
 		panelAnnul= new JPanel();
 		panelAnnul.add(b1);
 		panelAnnul.add(b2);
+		panelAnnul.add(b3);
 		
 		this.add(panelTitre,BorderLayout.NORTH);
 		this.add(panelMilieu,BorderLayout.CENTER);
@@ -57,8 +60,9 @@ public class Interface extends JFrame implements ActionListener {
 		
 	b1.addActionListener(this);
 	b2.addActionListener(this);
+	b3.addActionListener(this);
 		
-		this.setSize(400,400);
+		this.setSize(600,400);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -83,6 +87,20 @@ public class Interface extends JFrame implements ActionListener {
 		
 			j1.setText("");
 			j2.setText("");
+		}
+		
+		else if (event.getSource()==b3) {
+			// We show another time what there is on the pool
+			JOptionPane.showMessageDialog(null, JDBCConnectionPool.connex+"\n");
+			
+			// We take a connection and show its name
+			d=j.renvoieConex();
+			JOptionPane.showMessageDialog(null, d);
+			
+
+			// We show another time what there is on the pool
+
+			JOptionPane.showMessageDialog(null, JDBCConnectionPool.connex+"\n");
 		}
 	}
 	public static void main(String [] args) {

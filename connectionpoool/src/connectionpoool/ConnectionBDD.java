@@ -12,7 +12,7 @@ public class ConnectionBDD {
                 
             public static Connection getInst(){
             	try {
-                String url="jdbc:mysql://localhost:3306/test";
+                String url="jdbc:mysql://localhost:3306/maao";
                 String user="root";
                 String password="";
 
