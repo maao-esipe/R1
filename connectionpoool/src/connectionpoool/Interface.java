@@ -3,19 +3,20 @@ package connectionpoool;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.JOptionPane;
+
 
 import java.sql.*;
 
 public class Interface extends JFrame implements ActionListener {
+
 	private JTextField j1;
 	private JTextField j2;
 	private JPanel panelTitre, panelMilieu, panelAnnul;
 	private JLabel l,l2,l3;
-	private JButton b1, b2, b3;
-	public static Connection c, d;
-	private DataSource j;
+	private JButton b1, b2;
+	public static Connection c;
 	private String champ1,champ2;
+	
 	
 	
 	public Interface() {
@@ -32,13 +33,13 @@ public class Interface extends JFrame implements ActionListener {
 		
 		b1 = new JButton("Connecion");
 		b2 = new JButton("Cancel the entry");
-		b3 = new JButton ("Simulate Connection");
 		
 		
 		
-		panelTitre=new JPanel();//fait appel au constructeur de la classe JPanel afin de considerer panelTitre étant un panneau
+		
+		panelTitre=new JPanel();//fait appel au constructeur de la classe JPanel afin de considerer panelTitre ï¿½tant un panneau
 		panelTitre.add(l);//joute dans ce panneau le labet du titre
-		panelTitre.setBackground(Color.LIGHT_GRAY);//définit la couleur gris clair comme la couleur de fond de ce panneau
+		panelTitre.setBackground(Color.LIGHT_GRAY);//dï¿½finit la couleur gris clair comme la couleur de fond de ce panneau
 
 
 
@@ -52,7 +53,7 @@ public class Interface extends JFrame implements ActionListener {
 		panelAnnul= new JPanel();
 		panelAnnul.add(b1);
 		panelAnnul.add(b2);
-		panelAnnul.add(b3);
+	
 		
 		this.add(panelTitre,BorderLayout.NORTH);
 		this.add(panelMilieu,BorderLayout.CENTER);
@@ -60,12 +61,14 @@ public class Interface extends JFrame implements ActionListener {
 		
 	b1.addActionListener(this);
 	b2.addActionListener(this);
-	b3.addActionListener(this);
+
 		
-		this.setSize(600,400);
+		this.setSize(300,300);
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		this.setVisible(true);
+		
+		
 		
 	}
 	
@@ -74,46 +77,22 @@ public class Interface extends JFrame implements ActionListener {
 		if(event.getSource()==b1) {
 			 champ1 = j1.getText();
 				champ2 = j2.getText();
-				Fichier f=new Fichier();
-				f.afficher2(champ1,champ2);
-				
-			Interface2 k= new Interface2(); 
-			JOptionPane.showMessageDialog(null,JDBCConnectionPool.connex);
-			
-			
-			/*JOptionPane.showMessageDialog(null,"Connexion etablie avec sucees"+c);*/
+				ReadFichier r = new ReadFichier();
+				try {
+			             r.readFile(champ1,champ2);
+				} catch (Exception e) {
+					 
+				}			
 		}
+
+		
 		else if(event.getSource() ==b2) {
 		
 			j1.setText("");
 			j2.setText("");
 		}
-		
-		else if (event.getSource()==b3) {
-			// We show another time what there is on the pool
-			JOptionPane.showMessageDialog(null, JDBCConnectionPool.connex+"\n");
-			
-			// We take a connection and show its name
-			d=j.renvoieConex();
-			JOptionPane.showMessageDialog(null, d);
-			
-
-			// We show another time what there is on the pool
-
-			JOptionPane.showMessageDialog(null, JDBCConnectionPool.connex+"\n");
-		}
 	}
-	public static void main(String [] args) {
-		DataSource j=new DataSource();
-		j.remplir();
+	
 
-		JOptionPane.showMessageDialog(null,JDBCConnectionPool.connex+ "\n");
-		
-		c=j.renvoieConex();
-		JOptionPane.showMessageDialog(null,c);
-		
-		Interface i= new Interface();
-		i.setVisible(true);
-	}
 
 }
