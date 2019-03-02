@@ -3,7 +3,7 @@ package connectionpoool;
 import java.sql.*;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
+
 
 public class JDBCConnectionPool {
 		
@@ -17,10 +17,8 @@ public class JDBCConnectionPool {
 	public  static void remplir(){
 		for(int i=0; i<2;i++) { 
 		connex.add(ConnectionBDD.getInst());
+		
 		}
-		/*
-	  JOptionPane.showMessageDialog(null,"le nombre maximum de connexion atteint resseyer plus tard ","",JOptionPane.ERROR_MESSAGE);
-		*/
 	}
 	
 	
@@ -28,7 +26,6 @@ public class JDBCConnectionPool {
 		 
 			return connex.remove(0);
 		
-
 		}
 
 	public static boolean retourner(Connection con) { 
@@ -39,17 +36,12 @@ public class JDBCConnectionPool {
 	public static void fermerConnection(Connection connect) {
 		
 		try {
-			for(int i=0; i<2; i++) {
+			 
        	 if (connect !=null) {
        		
        		 connect.close();
-       		 connex.remove(0);
        	 }
-       			 /*
-       			JOptionPane.showMessageDialog(null,"Sisconnection Is Performed");
-       			*/
-       			 }
-			
+       	
 		}     	 
 		
        	 catch (Exception e) {
@@ -59,7 +51,6 @@ public class JDBCConnectionPool {
 	
 		}
 	}
-	
 	
 	
 	
