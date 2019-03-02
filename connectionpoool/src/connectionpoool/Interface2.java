@@ -52,7 +52,7 @@ public class Interface2  extends JFrame implements ActionListener{
 		this.add(panelBas, BorderLayout.SOUTH);
 		/*this.add(panelMil, new GridLayout(2,2));*/
 		
-		this.setSize(400,400);
+		this.setSize(300,	300);
 		this.setLocationRelativeTo(null);
 		
 		this.setVisible(true);
@@ -62,24 +62,11 @@ public void actionPerformed(ActionEvent event) {
 		if(event.getSource()==b3) {
 			
 			DataSource.remetConex(Interface.c);
-			JOptionPane.showMessageDialog(null,JDBCConnectionPool.connex);
-			
-			
+			System.out.println(JDBCConnectionPool.connex);
+			dispose();
 			DataSource.clotAtr(Interface.c);
-			JOptionPane.showMessageDialog(null,JDBCConnectionPool.connex);
-			
-			
-		Interface i=new Interface();
-}
-		
-else if (event.getSource().equals(b4)) {
-			FrameSel f= new FrameSel();
-			f.setVisible(true);
-			this.dispose();
-		}
-}
-}
-
-
+			System.out.println(JDBCConnectionPool.connex);
 	
-
+}
+}
+}
